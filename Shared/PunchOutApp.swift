@@ -14,7 +14,7 @@ struct PunchOutApp: App {
         
         WindowGroup {
             
-            ContentView()
+            MainView()
         }
     }
 }
