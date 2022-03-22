@@ -15,6 +15,8 @@
 		203AC33127E8C2A20074E809 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203AC30627E8C2910074E809 /* MainView.swift */; };
 		203AC33227E8C2A20074E809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 203AC30727E8C2A20074E809 /* Assets.xcassets */; };
 		203AC33327E8C2A20074E809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 203AC30727E8C2A20074E809 /* Assets.xcassets */; };
+		9AFB014327E9FBF500350A1C /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB014227E9FBF500350A1C /* MenuView.swift */; };
+		9AFB014427E9FBF500350A1C /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB014227E9FBF500350A1C /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 		203AC32727E8C2A20074E809 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		203AC32B27E8C2A20074E809 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		203AC32D27E8C2A20074E809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AFB014227E9FBF500350A1C /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 				203AC30527E8C2910074E809 /* PunchOutApp.swift */,
 				203AC30627E8C2910074E809 /* MainView.swift */,
 				203AC30727E8C2A20074E809 /* Assets.xcassets */,
+				9AFB014227E9FBF500350A1C /* MenuView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -309,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				203AC33027E8C2A20074E809 /* MainView.swift in Sources */,
+				9AFB014327E9FBF500350A1C /* MenuView.swift in Sources */,
 				203AC32E27E8C2A20074E809 /* PunchOutApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				203AC33127E8C2A20074E809 /* MainView.swift in Sources */,
+				9AFB014427E9FBF500350A1C /* MenuView.swift in Sources */,
 				203AC32F27E8C2A20074E809 /* PunchOutApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
