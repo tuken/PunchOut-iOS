@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     
-//    @ObservedObject var clock = Clock()
-    
     @Binding var showMenu: Bool
     
     var body: some View {
@@ -19,21 +17,8 @@ struct HomeView: View {
             .scaledToFit()
         
         VStack {
-            Text("\(self.clock.currentDate)")
-                .foregroundColor(.white.opacity(0.7))
-                .font(.system(.title2, design: .monospaced))
-                .padding()
-                        
-            Text("\(self.clock.currentDoW)")
-                .foregroundColor(.white.opacity(0.7))
-                .font(.system(.subheadline, design: .monospaced))
-                .padding()
-                        
-            Text("\(self.clock.currentTime)")
-                .foregroundColor(.white.opacity(0.7))
-                .font(.system(.largeTitle, design: .monospaced))
-                .padding()
-                        
+            CalendarView()
+            
             HStack {
                 Button(action: {
                     withAnimation {
@@ -75,6 +60,6 @@ struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        HomeView()
+        HomeView(showMenu: .constant(false))
     }
 }

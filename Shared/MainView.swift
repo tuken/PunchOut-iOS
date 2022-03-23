@@ -25,20 +25,19 @@ struct MainView: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    HomeView(clock: self.clock, showMenu: self.$showMenu)
+                    HomeView(showMenu: self.$showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
+//                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
                         .disabled(self.showMenu ? true : false)
-                    
-                    if self.showMenu {
-                        MenuView()
-                            .frame(width: geometry.size.width/2)
-                            .transition(.move(edge: .leading))
-                    }
                 }
                 .gesture(drag)
+                
+                if self.showMenu {
+                    MenuView()
+                        .frame(width: geometry.size.width*4/5, height: geometry.size.height)
+                        .transition(.move(edge: .leading))
+                }
             }
-#if !os(macOS)
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: (
                 Button(action: {
@@ -51,9 +50,42 @@ struct MainView: View {
                         .foregroundColor(.white)
                 }
             ))
-#endif
             .background(Color(red: 1/255, green: 172/255, blue: 200/255))
+            .navigationBarColor(Color(red: 1/255, green: 172/255, blue: 200/255))
         }
+    }
+}
+
+struct NavigationBarModifier: ViewModifier {
+    
+    let backgroundColor: Color
+
+    init(backgroundColor: Color) {
+        
+        self.backgroundColor = backgroundColor
+
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = UIColor(backgroundColor)
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        UINavigationBar.appearance().tintColor = .white
+    }
+
+    func body(content: Content) -> some View {
+        content
+    }
+}
+
+extension View {
+
+    func navigationBarColor(_ backgroundColor: Color) -> some View {
+        
+        modifier(NavigationBarModifier(backgroundColor: backgroundColor))
     }
 }
 
