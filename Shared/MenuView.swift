@@ -13,25 +13,33 @@ struct MenuView: View {
         
         VStack(alignment: .leading) {
             
-            HStack {
-                Image(systemName: "person")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Profile")
-                    .foregroundColor(.gray)
-                    .font(.headline)
+            VStack(alignment: .center) {
+
+                Image("secual")
+                    .resizable()
+                    .frame(width: 48, height: 48, alignment: .center)
             }
-            .padding(.top, 100)
+            .padding(32)
             
-            HStack {
-                Image(systemName: "envelope")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Message")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-            }
-            .padding(.top, 30)
+//            HStack {
+//                Image(systemName: "person")
+//                    .foregroundColor(.gray)
+//                    .imageScale(.large)
+//                Text("Profile")
+//                    .foregroundColor(.gray)
+//                    .font(.headline)
+//            }
+//            .padding(.top, 100)
+//
+//            HStack {
+//                Image(systemName: "envelope")
+//                    .foregroundColor(.gray)
+//                    .imageScale(.large)
+//                Text("Message")
+//                    .foregroundColor(.gray)
+//                    .font(.headline)
+//            }
+//            .padding(.top, 30)
             
             HStack {
                 Image(systemName: "gear")
@@ -52,13 +60,17 @@ struct MenuView: View {
                     .font(.headline)
             }
             .padding(.top, 40)
-
+            
             Spacer()
             
-            Text("Powerd by Secual Inc.")
-                .foregroundColor(.gray)
-                .font(.footnote)
-//                .fontWeight()
+            VStack(alignment: .center) {
+                
+                Text("Powerd by Secual Inc.")
+                    .foregroundColor(.gray)
+                    .font(.footnote)
+                //                .fontWeight()
+            }
+            .scaledToFill()
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
