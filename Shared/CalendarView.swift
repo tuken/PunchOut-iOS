@@ -58,17 +58,22 @@ class CalendarViewModel: ObservableObject {
 
     let formatterTime = DateFormatter()
 
-    @Published var currentDate = "16 Mar, 2022"
+    @Published var currentDate = ""
 
-    @Published var currentDoW = "Thursday"
+    @Published var currentDoW = ""
 
-    @Published var currentTime = "18 : 57 : 20"
+    @Published var currentTime = ""
 
     init() {
         
         self.formatterDate.dateStyle = .medium
         self.formatterDoW.dateFormat = "EEEE"
         self.formatterTime.timeStyle = .medium
+
+        let now = Date()
+        self.currentDate = self.formatterDate.string(from: now)
+        self.currentDoW = self.formatterDoW.string(from: now)
+        self.currentTime = self.formatterTime.string(from: now)
     }
 
     func start() {
