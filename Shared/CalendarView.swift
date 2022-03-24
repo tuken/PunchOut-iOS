@@ -68,7 +68,7 @@ class CalendarViewModel: ObservableObject {
         
         self.formatterDate.dateStyle = .medium
         self.formatterDoW.dateFormat = "EEEE"
-        self.formatterTime.timeStyle = .medium
+        self.formatterTime.dateFormat = "HH : mm : ss"
 
         let now = Date()
         self.currentDate = self.formatterDate.string(from: now)
