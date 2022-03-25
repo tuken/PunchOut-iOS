@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CalendarView: View {
     
-    @ObservedObject var cal = CalendarViewModel()
-
+    @StateObject var cal = CalendarViewModel()
+    
     var body: some View {
         
         VStack {
@@ -18,12 +18,12 @@ struct CalendarView: View {
                 .foregroundColor(.white.opacity(0.7))
                 .font(.system(.title2, design: .monospaced))
                 .padding()
-                        
+            
             Text("\(self.cal.currentDoW)")
                 .foregroundColor(.white.opacity(0.7))
                 .font(.system(.subheadline, design: .monospaced))
                 .padding()
-                        
+            
             Text("\(self.cal.currentTime)")
                 .foregroundColor(.white.opacity(0.7))
                 .font(.system(.largeTitle, design: .monospaced))
@@ -31,11 +31,9 @@ struct CalendarView: View {
         }
         .onAppear(perform: {
             cal.start()
-            print("👍 onAppear")
         })
         .onDisappear(perform: {
             cal.stop()
-            print("👍 onDisappear")
         })
     }
 }
@@ -55,39 +53,38 @@ class CalendarViewModel: ObservableObject {
     let formatterDate = DateFormatter()
     
     let formatterDoW = DateFormatter()
-
+    
     let formatterTime = DateFormatter()
-
+    
     @Published var currentDate = ""
-
+    
     @Published var currentDoW = ""
-
+    
     @Published var currentTime = ""
-
+    
     init() {
         
         self.formatterDate.dateStyle = .medium
         self.formatterDoW.dateFormat = "EEEE"
         self.formatterTime.dateFormat = "HH : mm : ss"
-
+        
         let now = Date()
         self.currentDate = self.formatterDate.string(from: now)
         self.currentDoW = self.formatterDoW.string(from: now)
         self.currentTime = self.formatterTime.string(from: now)
     }
-
+    
     func start() {
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (_) in
-
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+            
             let now = Date()
             self.currentDate = self.formatterDate.string(from: now)
             self.currentDoW = self.formatterDoW.string(from: now)
             self.currentTime = self.formatterTime.string(from: now)
-            print("👍 \(self.currentTime)")
-       })
+        })
     }
-
+    
     func stop() {
         
         self.timer.invalidate()
