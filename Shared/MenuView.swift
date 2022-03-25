@@ -11,35 +11,12 @@ struct MenuView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
+        VStack {
             
-            VStack(alignment: .center) {
-
-                Image("secual")
-                    .resizable()
-                    .frame(width: 48, height: 48, alignment: .center)
-            }
-            .padding(32)
-            
-//            HStack {
-//                Image(systemName: "person")
-//                    .foregroundColor(.gray)
-//                    .imageScale(.large)
-//                Text("Profile")
-//                    .foregroundColor(.gray)
-//                    .font(.headline)
-//            }
-//            .padding(.top, 100)
-//
-//            HStack {
-//                Image(systemName: "envelope")
-//                    .foregroundColor(.gray)
-//                    .imageScale(.large)
-//                Text("Message")
-//                    .foregroundColor(.gray)
-//                    .font(.headline)
-//            }
-//            .padding(.top, 30)
+            Image("secual")
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(20)
             
             HStack {
                 Image(systemName: "gear")
@@ -48,8 +25,9 @@ struct MenuView: View {
                 Text("Settings")
                     .foregroundColor(.gray)
                     .font(.headline)
+                Spacer()
             }
-            .padding(.top, 30)
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
             
             HStack {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
@@ -58,22 +36,18 @@ struct MenuView: View {
                 Text("Logout")
                     .foregroundColor(.gray)
                     .font(.headline)
+                Spacer()
             }
-            .padding(.top, 40)
-            
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
+
             Spacer()
             
-            VStack(alignment: .center) {
-                
-                Text("Powerd by Secual Inc.")
-                    .foregroundColor(.gray)
-                    .font(.footnote)
-                //                .fontWeight()
-            }
-            .scaledToFill()
+            Text("Powerd by Secual Inc.")
+                .foregroundColor(.gray)
+                .font(.footnote)
+                .padding(20)
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity)
         .background(Color(red: 32/255, green: 32/255, blue: 32/255))
         .edgesIgnoringSafeArea(.all)
     }
