@@ -11,6 +11,8 @@ struct MainView: View {
     
     @State var showMenu = false
     
+    @State var position =  CGPoint.zero
+    
     var body: some View {
         
         ZStack {
@@ -21,8 +23,21 @@ struct MainView: View {
                     
                     HomeView(showMenu: self.$showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                    //                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
+                        //                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
                         .disabled(self.showMenu ? true : false)
+                        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global)
+                                    .onChanged { val in
+                                        if self.showMenu {
+                                            self.position = val.location
+                                        }
+                                    }
+                                    .onEnded {_ in
+                                        if self.showMenu {
+                                            if self.position.x > geometry.size.width*4/5 {
+                                                self.showMenu.toggle()
+                                            }
+                                        }
+                                    })
                 }
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: (
@@ -47,13 +62,13 @@ struct MainView: View {
                         .frame(width: geometry.size.width*4/5, height: geometry.size.height)
                         .transition(.move(edge: .leading))
                         .gesture(DragGesture()
-                            .onEnded {
-                                if $0.translation.width < -100 {
-                                    withAnimation {
-                                        self.showMenu.toggle()
-                                    }
-                                }
-                            })
+                                    .onEnded {
+                                        if $0.translation.width < -100 {
+                                            withAnimation {
+                                                self.showMenu.toggle()
+                                            }
+                                        }
+                                    })
                 }
             }
         }
