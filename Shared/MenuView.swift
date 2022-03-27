@@ -15,8 +15,8 @@ struct MenuView: View {
             
             Image("secual")
                 .resizable()
-                .frame(width: 64, height: 64)
-                .padding(20)
+                .frame(width: 80, height: 80)
+                .padding(30)
             
             HStack {
                 Image(systemName: "gear")
