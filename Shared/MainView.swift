@@ -23,7 +23,6 @@ struct MainView: View {
                     
                     HomeView(showMenu: self.$showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        //                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
                         .disabled(self.showMenu ? true : false)
                         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global)
                                     .onChanged { val in
@@ -56,6 +55,7 @@ struct MainView: View {
             }
             
             if self.showMenu {
+                
                 GeometryReader { geometry in
                     
                     MenuView()
@@ -72,39 +72,6 @@ struct MainView: View {
                 }
             }
         }
-    }
-}
-
-struct NavigationBarModifier: ViewModifier {
-    
-    let backgroundColor: Color
-    
-    init(backgroundColor: Color) {
-        
-        self.backgroundColor = backgroundColor
-        
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = UIColor(backgroundColor)
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().compactAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-        UINavigationBar.appearance().tintColor = .white
-    }
-    
-    func body(content: Content) -> some View {
-        content
-    }
-}
-
-extension View {
-    
-    func navigationBarColor(_ backgroundColor: Color) -> some View {
-        
-        modifier(NavigationBarModifier(backgroundColor: backgroundColor))
     }
 }
 
