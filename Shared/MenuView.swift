@@ -19,23 +19,29 @@ struct MenuView: View {
                 .padding(30)
             
             HStack {
+                
                 Image(systemName: "gear")
                     .foregroundColor(.gray)
                     .imageScale(.large)
+                
                 Text("Settings")
                     .foregroundColor(.gray)
                     .font(.headline)
+                
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
             
             HStack {
+                
                 Image(systemName: "rectangle.portrait.and.arrow.right")
                     .foregroundColor(.gray)
                     .imageScale(.large)
+                
                 Text("Logout")
                     .foregroundColor(.gray)
                     .font(.headline)
+                
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
