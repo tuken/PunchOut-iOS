@@ -11,6 +11,8 @@ struct HomeView: View {
     
     @Binding var showMenu: Bool
     
+    @State private var showAlert = false
+    
     var body: some View {
         
         Image("common_logo")
@@ -21,9 +23,10 @@ struct HomeView: View {
             
             HStack {
                 Button(action: {
-                    withAnimation {
-                        self.showMenu = true
-                    }
+//                    withAnimation {
+//                        self.showMenu = true
+//                    }
+                    self.showAlert = true
                 }) {
                     Text("PUNCH ME IN")
                 }
@@ -35,11 +38,15 @@ struct HomeView: View {
                 )
                 .shadow(radius: 2)
                 .padding()
+                .alert(isPresented: self.$showAlert) {
+                    Alert(title: Text("出勤処理"))
+                }
                 
                 Button(action: {
-                    withAnimation {
-                        self.showMenu = true
-                    }
+//                    withAnimation {
+//                        self.showMenu = true
+//                    }
+                    self.showAlert = true
                 }) {
                     Text("PUNCH ME OUT")
                 }
@@ -51,6 +58,9 @@ struct HomeView: View {
                 )
                 .shadow(radius: 2)
                 .padding()
+                .alert(isPresented: self.$showAlert) {
+                    Alert(title: Text("退勤処理"))
+                }
             }
         }
     }
