@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State var showMenu = false
+    @EnvironmentObject var main: MainViewModel
     
     @State var position =  CGPoint.zero
     
@@ -21,19 +21,21 @@ struct MainView: View {
                 
                 GeometryReader { geometry in
                     
-                    HomeView(showMenu: self.$showMenu)
+                    HomeView()
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .disabled(self.showMenu ? true : false)
+                        .disabled(self.main.showMenu ? true : false)
                         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global)
                                     .onChanged { val in
-                                        if self.showMenu {
+                                        if self.main.showMenu {
                                             self.position = val.location
                                         }
                                     }
                                     .onEnded {_ in
-                                        if self.showMenu {
+                                        if self.main.showMenu {
                                             if self.position.x > geometry.size.width*4/5 {
-                                                self.showMenu.toggle()
+                                                withAnimation {
+                                                    self.main.showMenu.toggle()
+                                                }
                                             }
                                         }
                                     })
@@ -42,7 +44,7 @@ struct MainView: View {
                 .navigationBarItems(leading: (
                     Button(action: {
                         withAnimation {
-                            self.showMenu.toggle()
+                            self.main.showMenu.toggle()
                         }
                     }) {
                         Image(systemName: "line.horizontal.3")
@@ -53,19 +55,20 @@ struct MainView: View {
                 .background(Color(red: 1/255, green: 172/255, blue: 200/255))
                 .navigationBarColor(Color(red: 1/255, green: 172/255, blue: 200/255))
             }
-            
-            if self.showMenu {
+
+            if self.main.showMenu {
                 
                 GeometryReader { geometry in
                     
                     MenuView()
+                        .environmentObject(self.main)
                         .frame(width: geometry.size.width*4/5, height: geometry.size.height)
                         .transition(.move(edge: .leading))
                         .gesture(DragGesture()
                                     .onEnded {
                                         if $0.translation.width < -100 {
                                             withAnimation {
-                                                self.showMenu.toggle()
+                                                self.main.showMenu.toggle()
                                             }
                                         }
                                     })
@@ -73,6 +76,11 @@ struct MainView: View {
             }
         }
     }
+}
+
+class MainViewModel: ObservableObject {
+    
+    @Published var showMenu = false
 }
 
 struct MainView_Previews: PreviewProvider {

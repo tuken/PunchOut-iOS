@@ -9,6 +9,10 @@ import SwiftUI
 
 struct MenuView: View {
     
+    @EnvironmentObject var main: MainViewModel
+    
+    @State private var showSettings = false
+    
     var body: some View {
         
         VStack {
@@ -24,13 +28,27 @@ struct MenuView: View {
                     .foregroundColor(.gray)
                     .imageScale(.large)
                 
-                Text("Settings")
-                    .foregroundColor(.gray)
-                    .font(.headline)
+                NavigationLink(destination: SettingsView()) {
+                    Text("Settings")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
                 
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
+            //            .onTapGesture {
+            //
+            //                self.main.showMenu = false
+            //
+            //                withAnimation {
+            //                    self.showSettings.toggle()
+            //                }
+            //            }
+            //            .sheet(isPresented: self.$showSettings) {
+            //                SettingsView()
+            //                    .environmentObject(self.main)
+            //            }
             
             HStack {
                 
@@ -45,7 +63,7 @@ struct MenuView: View {
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
-
+            
             Spacer()
             
             Text("Powerd by Secual Inc.")
@@ -64,5 +82,6 @@ struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         
         MenuView()
+            .environmentObject(MainViewModel())
     }
 }

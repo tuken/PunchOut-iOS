@@ -9,9 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @Binding var showMenu: Bool
+    @State private var showInAlert = false
     
-    @State private var showAlert = false
+    @State private var showOutAlert = false
     
     var body: some View {
         
@@ -26,7 +26,7 @@ struct HomeView: View {
 //                    withAnimation {
 //                        self.showMenu = true
 //                    }
-                    self.showAlert = true
+                    self.showInAlert = true
                 }) {
                     Text("PUNCH ME IN")
                 }
@@ -38,7 +38,7 @@ struct HomeView: View {
                 )
                 .shadow(radius: 2)
                 .padding()
-                .alert(isPresented: self.$showAlert) {
+                .alert(isPresented: self.$showInAlert) {
                     Alert(title: Text("出勤処理"))
                 }
                 
@@ -46,7 +46,7 @@ struct HomeView: View {
 //                    withAnimation {
 //                        self.showMenu = true
 //                    }
-                    self.showAlert = true
+                    self.showOutAlert = true
                 }) {
                     Text("PUNCH ME OUT")
                 }
@@ -58,7 +58,7 @@ struct HomeView: View {
                 )
                 .shadow(radius: 2)
                 .padding()
-                .alert(isPresented: self.$showAlert) {
+                .alert(isPresented: self.$showOutAlert) {
                     Alert(title: Text("退勤処理"))
                 }
             }
@@ -70,6 +70,6 @@ struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        HomeView(showMenu: .constant(false))
+        HomeView()
     }
 }

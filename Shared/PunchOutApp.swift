@@ -15,6 +15,7 @@ struct PunchOutApp: App {
         WindowGroup {
             
             MainView()
+                .environmentObject(MainViewModel())
         }
     }
 }
