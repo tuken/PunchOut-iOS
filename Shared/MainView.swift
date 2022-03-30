@@ -9,37 +9,29 @@ import SwiftUI
 
 struct MainView: View {
     
+    private let defaultTag: Int = 8888
+    
     @EnvironmentObject var main: MainViewModel
     
     @State var position =  CGPoint.zero
     
     var body: some View {
-        
+
         ZStack {
-            
+
             NavigationView {
-                
-                GeometryReader { geometry in
-                    
+
+                GeometryReader { g in
+
                     HomeView()
-                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .frame(width: g.size.width, height: g.size.height)
                         .disabled(self.main.showMenu ? true : false)
-                        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global)
-                                    .onChanged { val in
-                                        if self.main.showMenu {
-                                            self.position = val.location
-                                        }
-                                    }
-                                    .onEnded {_ in
-                                        if self.main.showMenu {
-                                            if self.position.x > geometry.size.width*4/5 {
-                                                withAnimation {
-                                                    self.main.showMenu.toggle()
-                                                }
-                                            }
-                                        }
-                                    })
+
+                    NavigationLink(destination: self.main.destination, tag: defaultTag, selection: self.$main.tag) {
+                        EmptyView()
+                    }
                 }
+                .background(Image("background"))
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: (
                     Button(action: {
@@ -52,8 +44,15 @@ struct MainView: View {
                             .foregroundColor(.white)
                     }
                 ))
-                .background(Color(red: 1/255, green: 172/255, blue: 200/255))
                 .navigationBarColor(Color(red: 1/255, green: 172/255, blue: 200/255))
+                .gesture(TapGesture()
+                    .onEnded { _ in
+                        if self.main.showMenu {
+                            withAnimation {
+                                self.main.showMenu = false
+                            }
+                        }
+                    })
             }
 
             if self.main.showMenu {
@@ -65,13 +64,13 @@ struct MainView: View {
                         .frame(width: geometry.size.width*4/5, height: geometry.size.height)
                         .transition(.move(edge: .leading))
                         .gesture(DragGesture()
-                                    .onEnded {
-                                        if $0.translation.width < -100 {
-                                            withAnimation {
-                                                self.main.showMenu.toggle()
-                                            }
-                                        }
-                                    })
+                            .onEnded {
+                                if $0.translation.width < -100 {
+                                    withAnimation {
+                                        self.main.showMenu.toggle()
+                                    }
+                                }
+                            })
                 }
             }
         }
@@ -81,6 +80,10 @@ struct MainView: View {
 class MainViewModel: ObservableObject {
     
     @Published var showMenu = false
+    
+    @Published var destination: AnyView? = nil
+    
+    @Published var tag: Int? = nil
 }
 
 struct MainView_Previews: PreviewProvider {

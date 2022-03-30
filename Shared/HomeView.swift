@@ -15,17 +15,12 @@ struct HomeView: View {
     
     var body: some View {
         
-        Image("common_logo")
-            .scaledToFit()
-        
         VStack {
             CalendarView()
             
             HStack {
+                
                 Button(action: {
-//                    withAnimation {
-//                        self.showMenu = true
-//                    }
                     self.showInAlert = true
                 }) {
                     Text("PUNCH ME IN")
@@ -43,9 +38,6 @@ struct HomeView: View {
                 }
                 
                 Button(action: {
-//                    withAnimation {
-//                        self.showMenu = true
-//                    }
                     self.showOutAlert = true
                 }) {
                     Text("PUNCH ME OUT")

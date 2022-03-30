@@ -12,10 +12,16 @@ struct SettingsView: View {
     @EnvironmentObject var main: MainViewModel
 
     var body: some View {
+
+        ZStack {
+//        Image("common_logo")
+//            .scaledToFit()
         
-        Image("common_logo")
-            .scaledToFit()
-    }
+        VStack {
+            Text("Settings View")
+        }
+        }
+}
 }
 
 struct SettingsView_Previews: PreviewProvider {

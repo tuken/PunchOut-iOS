@@ -28,27 +28,18 @@ struct MenuView: View {
                     .foregroundColor(.gray)
                     .imageScale(.large)
                 
-                NavigationLink(destination: SettingsView()) {
-                    Text("Settings")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
+                Text("Settings")
+                    .foregroundColor(.gray)
+                    .font(.headline)
                 
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
-            //            .onTapGesture {
-            //
-            //                self.main.showMenu = false
-            //
-            //                withAnimation {
-            //                    self.showSettings.toggle()
-            //                }
-            //            }
-            //            .sheet(isPresented: self.$showSettings) {
-            //                SettingsView()
-            //                    .environmentObject(self.main)
-            //            }
+            .onTapGesture {
+                self.main.showMenu = false
+                self.main.destination = AnyView(SettingsView())
+                self.main.tag = 8888
+            }
             
             HStack {
                 
