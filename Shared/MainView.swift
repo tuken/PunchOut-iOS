@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     
-    private let defaultTag: Int = 8888
-    
     @EnvironmentObject var main: MainViewModel
     
     @State var position =  CGPoint.zero
@@ -27,12 +25,13 @@ struct MainView: View {
                         .frame(width: g.size.width, height: g.size.height)
                         .disabled(self.main.showMenu ? true : false)
 
-                    NavigationLink(destination: self.main.destination, tag: defaultTag, selection: self.$main.tag) {
+                    NavigationLink(destination: self.main.destination, tag: "", selection: self.$main.tag) {
                         EmptyView()
                     }
                 }
                 .background(Image("background"))
-                .navigationBarTitle("", displayMode: .inline)
+                .navigationBarTitle("")
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading: (
                     Button(action: {
                         withAnimation {
@@ -83,7 +82,7 @@ class MainViewModel: ObservableObject {
     
     @Published var destination: AnyView? = nil
     
-    @Published var tag: Int? = nil
+    @Published var tag: String? = nil
 }
 
 struct MainView_Previews: PreviewProvider {

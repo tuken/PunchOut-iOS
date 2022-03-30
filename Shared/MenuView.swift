@@ -11,8 +11,6 @@ struct MenuView: View {
     
     @EnvironmentObject var main: MainViewModel
     
-    @State private var showSettings = false
-    
     var body: some View {
         
         VStack {
@@ -35,11 +33,6 @@ struct MenuView: View {
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
-            .onTapGesture {
-                self.main.showMenu = false
-                self.main.destination = AnyView(SettingsView())
-                self.main.tag = 8888
-            }
             
             HStack {
                 
