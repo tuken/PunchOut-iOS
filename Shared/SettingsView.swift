@@ -14,14 +14,15 @@ struct SettingsView: View {
     var body: some View {
 
         ZStack {
-//        Image("common_logo")
-//            .scaledToFit()
-        
-        VStack {
+
+            Color(red: 1/255, green: 172/255, blue: 200/255)
+                .edgesIgnoringSafeArea(.all)
+            
             Text("Settings View")
         }
-        }
-}
+        .navigationBarTitle("設定")
+        .navigationBarTitleDisplayMode(.inline)
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
