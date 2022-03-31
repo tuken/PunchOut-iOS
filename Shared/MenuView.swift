@@ -20,19 +20,10 @@ struct MenuView: View {
                 .frame(width: 80, height: 80)
                 .padding(30)
             
-            HStack {
-                
-                Image(systemName: "gear")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                
-                Text("Settings")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-                
-                Spacer()
+            ForEach(self.main.menus) { m in
+                MenuItemView(imageName: m.type.imageName, title: m.type.title, tag: m.type.tag, destination: m.type.destinationView)
+                    .environmentObject(self.main)
             }
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
             
             HStack {
                 
@@ -46,7 +37,7 @@ struct MenuView: View {
                 
                 Spacer()
             }
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 0))
+            .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 0))
             
             Spacer()
             

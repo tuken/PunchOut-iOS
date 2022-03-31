@@ -14,19 +14,21 @@ struct MainView: View {
     @State var position =  CGPoint.zero
     
     var body: some View {
-
+        
         ZStack {
-
+            
             NavigationView {
-
+                
                 GeometryReader { g in
-
+                    
                     HomeView()
                         .frame(width: g.size.width, height: g.size.height)
                         .disabled(self.main.showMenu ? true : false)
-
-                    NavigationLink(destination: self.main.destination, tag: "", selection: self.$main.tag) {
-                        EmptyView()
+                    
+                    ForEach(self.main.menus) { m in
+                        NavigationLink(destination: m.type.destinationView, tag: m.type.tag, selection: self.$main.currentTag) {
+                            EmptyView()
+                        }
                     }
                 }
                 .background(Image("background"))
@@ -53,7 +55,7 @@ struct MainView: View {
                         }
                     })
             }
-
+            
             if self.main.showMenu {
                 
                 GeometryReader { geometry in
@@ -82,7 +84,10 @@ class MainViewModel: ObservableObject {
     
     @Published var destination: AnyView? = nil
     
-    @Published var tag: String? = nil
+    @Published var currentTag: String? = nil
+    
+//    public let menus = [MenuItem(type: .setting), MenuItem(type: .logout)]
+    public let menus = [MenuItem(type: .setting)]
 }
 
 struct MainView_Previews: PreviewProvider {

@@ -41,7 +41,7 @@ struct MenuItemView: View {
         .onTapGesture {
             self.main.showMenu = false
             self.main.destination = self.destination
-            self.main.tag = self.tag
+            self.main.currentTag = self.tag
         }
     }
 }
