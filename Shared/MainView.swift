@@ -54,6 +54,14 @@ struct MainView: View {
                             }
                         }
                     })
+                .gesture(DragGesture()
+                    .onEnded {
+                        if $0.translation.width > 120 {
+                            withAnimation {
+                                self.main.showMenu = true
+                            }
+                        }
+                    })
             }
             
             if self.main.showMenu {
@@ -68,7 +76,7 @@ struct MainView: View {
                             .onEnded {
                                 if $0.translation.width < -100 {
                                     withAnimation {
-                                        self.main.showMenu.toggle()
+                                        self.main.showMenu = false
                                     }
                                 }
                             })
@@ -86,7 +94,7 @@ class MainViewModel: ObservableObject {
     
     @Published var currentTag: String? = nil
     
-//    public let menus = [MenuItem(type: .setting), MenuItem(type: .logout)]
+    //    public let menus = [MenuItem(type: .setting), MenuItem(type: .logout)]
     public let menus = [MenuItem(type: .setting)]
 }
 
