@@ -10,12 +10,22 @@ import SwiftUI
 @main
 struct PunchOutApp: App {
     
+    @State var isSplashing = true
+
     var body: some Scene {
+        
+        let main = MainViewModel()
         
         WindowGroup {
             
-            MainView()
-                .environmentObject(MainViewModel())
+            if isSplashing {
+                
+                SplashView(isSplashing: $isSplashing)
+            }
+            else {
+                MainView()
+                    .environmentObject(main)
+            }
         }
     }
 }
