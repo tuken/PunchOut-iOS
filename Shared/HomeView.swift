@@ -25,7 +25,7 @@ struct HomeView: View {
                 }) {
                     Text("PUNCH ME IN")
                 }
-                .frame(width: 130, height: 50)
+                .frame(width: 140, height: 50)
                 .foregroundColor(.white.opacity(0.5))
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
@@ -42,7 +42,7 @@ struct HomeView: View {
                 }) {
                     Text("PUNCH ME OUT")
                 }
-                .frame(width: 130, height: 50)
+                .frame(width: 140, height: 50)
                 .foregroundColor(.white.opacity(0.6))
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
